@@ -21,10 +21,6 @@ namespace ConsoleApplication
 
             //This is a branch Test
             }
-        public void PruebaMergeBranch()
-        {
-            
-            ///Este metodo se tiene que Unir
-            }
+
         }
     }
