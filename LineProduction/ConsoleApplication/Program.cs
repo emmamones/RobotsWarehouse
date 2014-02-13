@@ -19,5 +19,7 @@ namespace ConsoleApplication
             //NUevos COmentarios
             //mas Comentarios
             }
+        public void TestMergeMethod()
+        { }
         }
     }
