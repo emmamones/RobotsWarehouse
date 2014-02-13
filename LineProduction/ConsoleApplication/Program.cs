@@ -14,7 +14,8 @@ namespace ConsoleApplication
             {
 
             WareHouse WH = new WareHouse(4, 5,2,8, 40, 3);
-            ErrorProduccion ER = WH.Start();         
+            ErrorProduccion ER = WH.Start();
+           Console.WriteLine(ER.Reason.ToString());
             }
 
         }
