@@ -9,18 +9,15 @@ namespace ConsoleApplication
     {
     class Program
         {
-     
+
         static void Main(string[] args)
             {
 
-            WareHouse WH = new WareHouse(4, 5,2,8, 40, 3);
+            WareHouse WH = new WareHouse(4, 5, 2, 8, 40, 3);
             ErrorProduccion ER = WH.Start();
-           Console.WriteLine(ER.Reason.ToString());
+            Console.WriteLine(ER.Reason.ToString());
             //NUevos COmentarios
             //mas Comentarios
-
-            
             }
-
         }
     }
