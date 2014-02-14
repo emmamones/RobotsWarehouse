@@ -14,7 +14,7 @@ namespace TransportRobots
         public delegate void delRobot(Robot iRobot,bool pOccupay);
         public event delRobot RobotActivity;
 
-        public delegate void delStation(Station iStation,bool pOccupay);
+        public delegate void delStation(Station iStation,bool pOccupay,int idRobot);
         public event delStation StationActivity;
        /// <summary>
        /// creation of Stations
@@ -23,35 +23,34 @@ namespace TransportRobots
         public Station(int pIdstation, int pMaxNBoxes) { Occupy = false; MaxNBoxes = pMaxNBoxes; idStation = pIdstation; }
         public Station() { }
         public void ArriveRobot(Robot iRobot)
-            {
-            Console.WriteLine(string.Format(" Robot:{0} ,Arrive on Station!{1}", iRobot.idRobot.ToString(), idStation.ToString()));          
-            StationActivity(this, true);
-            RobotActivity(iRobot, true); 
+            { 
+            StationActivity(this, true,iRobot.idRobot);
+            RobotActivity(iRobot, true);  
             do
                 {
-                if (MaxNBoxes >= 1)
+                if (iRobot.NBoxes >= 1)
                     {
-                    LeaveBox(iRobot);  
+                    LeaveBox(iRobot);
                     }
-                } while (iRobot.NBoxes >= 1);
+                else { break; }
+                } while (MaxNBoxes >= 1);
 
             DepartureRobot(iRobot); 
             }
 
         public void LeaveBox(Robot iRobot)
-            { 
+            {
+            //Thread.Sleep(1000);
             Console.WriteLine(string.Format(" Robot:{0} , Droping Box on Station:{1}", iRobot.idRobot.ToString(), idStation.ToString())); 
             iRobot.NBoxes = iRobot.NBoxes - 1; 
             MaxNBoxes = MaxNBoxes - 1;
-            //Thread.Sleep(2000); 
+            
             }
 
         public void DepartureRobot(Robot iRobot)
             {
-            Console.WriteLine(string.Format(" Robot:{0} , Leaving  Station{1}", iRobot.idRobot.ToString(), idStation.ToString()));
-            StationActivity(this,false);
-            RobotActivity(iRobot, false);
-            Console.WriteLine(string.Format(" Avalible spaces on Station!{0} : {1}", idStation.ToString(), MaxNBoxes.ToString()));            
+            StationActivity(this, false, iRobot.idRobot);
+            RobotActivity(iRobot, false); 
             } 
 
 
