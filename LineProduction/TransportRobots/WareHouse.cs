@@ -50,10 +50,10 @@ namespace TransportRobots
         /// <returns></returns>
         public ErrorProduccion Start()
             {
-
             ErrorProduccion ER = CrearProduccion(Robots, Stations, BoxperRobot, BoxLimitsStation, StockWharehouse);
+            // Console.WriteLine(ER.Reason);
+            WhareHouseNotificaciones(string.Format(ER.Reason.ToString()));
 
-            Console.WriteLine(ER.Reason);
             if (ER.Pass)
                 {
                 do
@@ -191,11 +191,11 @@ namespace TransportRobots
                     {
                     ER.Reason = "Execution Production"; ER.Pass = true;
 
-                    if (nRobots <= 1)
+                    if (nRobots < 1)
                         {
                         ER.Reason = "No Robots, create a Robot"; ER.Pass = false;
                         }
-                    if (nStations <= 1)
+                    if (nStations < 1)
                         {
                         ER.Reason = "No Stations,No reason to move robots"; ER.Pass = false;
                         }
@@ -258,12 +258,12 @@ namespace TransportRobots
             if (pOccupy == true)
                 {
                 //Console.WriteLine(string.Format(" Robot:{0} Bussy!", Rin.idRobot.ToString()));
-                WhareHouseNotificaciones(string.Format("   + Robot:{0} Bussy!", Rin.idRobot.ToString()));
+                WhareHouseNotificaciones(string.Format(" + Robot:{0} Bussy!", Rin.idRobot.ToString()));
                 }
             else
                 {
                 //Console.WriteLine(string.Format(" Robot:{0} Free!", Rin.idRobot.ToString()));
-                WhareHouseNotificaciones(string.Format("   + Robot:{0} Free!", Rin.idRobot.ToString()));
+                WhareHouseNotificaciones(string.Format("    + Robot:{0} Free!", Rin.idRobot.ToString()));
                 }
 
             WhareHouseStatusActivity(LStations.Where(x => x.Occupy == false && x.MaxNBoxes >= 1).Count()
@@ -284,7 +284,7 @@ namespace TransportRobots
             if (pOccupy == true)
                 {
                 //Console.WriteLine(string.Format(" Robot:{0} ,Arrive on Station!{1}", idRobot.ToString(), Sin.idStation.ToString()));
-                WhareHouseNotificaciones(string.Format(" Robot:{0} ,Arrive Station:{1}", idRobot.ToString(), Sin.idStation.ToString()));
+                WhareHouseNotificaciones(string.Format("                       Robot:{0} ,Arrive Station:{1}", idRobot.ToString(), Sin.idStation.ToString()));
                 LimitMaxonLine = LimitMaxonLine - 1;
 
                 //Console.WriteLine(string.Format(" Station:{0} Bussy!", Sin.idStation.ToString()));
@@ -293,7 +293,7 @@ namespace TransportRobots
             else
                 {
                 //Console.WriteLine(string.Format(" Robot:{0} , Leaving  Station{1}", idRobot.ToString(), Sin.idStation.ToString()));
-                WhareHouseNotificaciones(string.Format(" Robot:{0} , Leaving  Station:{1}", idRobot.ToString(), Sin.idStation.ToString()));
+                WhareHouseNotificaciones(string.Format("                                                  Robot:{0} , Leaving  Station:{1}", idRobot.ToString(), Sin.idStation.ToString()));
                 LimitMaxonLine = LimitMaxonLine + 1;
                 // Console.WriteLine(string.Format(" Station:{0} Free!", Sin.idStation.ToString()));
                 WhareHouseNotificaciones(string.Format("   + Station:{0} Free!", Sin.idStation.ToString()));

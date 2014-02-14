@@ -19,9 +19,21 @@ namespace ProductionScreen
         delegate void SetLalbelCallback(TextBox txtb, string value);
         delegate void SetListBoxCallback(ListBox List, string value);
 
+        private void EnableBoxes(bool pEnableComponent) {
+        lblStations.Enabled = pEnableComponent;
+        lblRobots.Enabled = pEnableComponent;
+        lblStock.Enabled = pEnableComponent;
+        txtNAP.Enabled = pEnableComponent;
+         txtNBR.Enabled = pEnableComponent;
+        txtNBS.Enabled = pEnableComponent;   
+            }
+
+
         private void btnStart_Click(object sender, EventArgs e)
             {
             ListBoxNotificaciones.Items.Clear();
+          
+
             BackgroundWorker worker2 = new BackgroundWorker();
               worker2.DoWork += (o, ea) =>
               {
@@ -36,19 +48,25 @@ namespace ProductionScreen
                   WH.WhareHouseNotificaciones += new WareHouse.delWareHouseNotificaciones(UpdateNotificaciones);
 
                   ErrorProduccion ER = WH.Start();
-                  UpdateListBox(ListBoxNotificaciones, ER.Reason.ToString()); 
+ 
               };
               worker2.RunWorkerCompleted += (o, ea) =>
-              {
-                 //Busy
+              { 
+              EnableBoxes(true); 
               };
 
-              //_busyIndicator.IsBusy = true;
+              EnableBoxes(false);
               worker2.RunWorkerAsync();     
 
           
             }
-
+        /// <summary>
+        /// Waits for thread Event to Update the Boxes
+        /// </summary>
+        /// <param name="pStations"></param>
+        /// <param name="pRobots"></param>
+        /// <param name="PStock"></param>
+        /// <param name="pAvalibleSpace"></param>
         public void MostrarInformacion(int pStations, int pRobots, int PStock, int pAvalibleSpace)
             {
             UpdateText(lblStations, (pStations.ToString()));
@@ -57,12 +75,20 @@ namespace ProductionScreen
             UpdateText(txtNAP, (pAvalibleSpace.ToString())); 
             }
 
+        /// <summary>
+        /// Waits for Update Event to Update the Notifications on the ListBox
+        /// </summary>
+        /// <param name="Notificacion"></param>
         public void UpdateNotificaciones(string Notificacion)
             {
             UpdateListBox(ListBoxNotificaciones,Notificacion);
             }
 
-
+        /// <summary>
+        /// Callback for Update the textBox outside the main UI Thread
+        /// </summary>
+        /// <param name="txtb"></param>
+        /// <param name="text"></param>
         private void UpdateText(TextBox txtb, string text)
             {
             // If the current thread is not the UI thread, InvokeRequired will be true
@@ -82,6 +108,11 @@ namespace ProductionScreen
                 } 
             }
 
+        /// <summary>
+        /// Callback for Update the ListBox outside the main UI Thread
+        /// </summary>
+        /// <param name="pListBox"></param>
+        /// <param name="text"></param>
         private void UpdateListBox(ListBox pListBox, string text)
             {
            
