@@ -71,7 +71,7 @@ namespace TransportRobots
                             if (iRobot != null)
                                 {
                                 Servus tempRob = new Servus(iRobot.idRobot,0);
-                                AsignarCajas(tempRob);
+                                AsignBoxes(tempRob);
                                 tempRob.AttachCentral(this); 
                                 WhareHouseNotifyMonitors(string.Format("Send Robot:{0} to Station:{1} ", tempRob.idRobot.ToString(),iStation.idStation.ToString()));
 
@@ -81,7 +81,7 @@ namespace TransportRobots
                                 tempRob.NSiguientePosicion = tempStation.idStation;
                                 Thread T = new Thread(() => tempRob.SendRobot(tempStation));
                                 T.Start();
-                                //T.Join(); //Remove it in order to Test the Main Thread wait for the rest.
+                                //T.Join(); //Uncomment it in order to Test the Main Thread waiting for the rest.
                                 }
                             else
                                 {
@@ -114,7 +114,7 @@ namespace TransportRobots
 
 
         /// <summary>
-        /// Validates spaces to send another robot
+        /// Validates free Production spots in Line in order to send another robot
         /// </summary>
         /// <returns></returns>
         private bool AvalibleSpace()
@@ -122,7 +122,7 @@ namespace TransportRobots
             return LimitMaxonLine >= 1 ? true : false;
             }
         /// <summary>
-        /// Validates if the stations ar full and if they are Not look to asign more Boxes.
+        /// Validates if the stations are full.
         /// </summary>
         /// <returns></returns>
         private bool AvalibleStationsAndRobots()
@@ -151,7 +151,7 @@ namespace TransportRobots
         /// <summary>
         /// Add more Boxes to  Avalible Robots if there is Avaliable Stock.
         /// </summary>
-        private void AsignarCajas(Servus tempRob)
+        private void AsignBoxes(Servus tempRob)
             {
             do
                 {
@@ -161,7 +161,7 @@ namespace TransportRobots
                     StockWharehouse = StockWharehouse - 1;
                     }
                 else { break; }
-                } while (tempRob.NBoxes<2);
+                } while (tempRob.NBoxes<BoxperRobot);
             }
 
         /// <summary>
@@ -206,16 +206,14 @@ namespace TransportRobots
                         LRobots = new List<Servus>();
                         for (int i = 0; i < nRobots; i++)
                             {
-                            Servus Robot = new Servus(i, 0);
-                            // Robot.AttachCentral(this);
+                            Servus Robot = new Servus(i, 0); 
                             LRobots.Add(Robot);
                             }
 
                         LStations = new List<ContainerStation>();
                         for (int i = 0; i < nStations; i++)
                             {
-                            ContainerStation CS = new ContainerStation(i, pBoxLimitsStation);
-                            // CS.AttachCentral(this);
+                            ContainerStation CS = new ContainerStation(i, pBoxLimitsStation); 
                             LStations.Add(CS);
                             }
                         }
@@ -263,7 +261,7 @@ namespace TransportRobots
         /// <param name="idRobot"></param>
         /// <param name="pOccupy"></param>
         /// <param name="NBoxes"></param>
-        public void NotificarRobotvalible(int idRobot, bool pOccupy, int NBoxes)
+        public void NotifyRobotActivity(int idRobot, bool pOccupy, int NBoxes)
             {
             Servus Rin = LRobots.Where(x => x.idRobot == idRobot).FirstOrDefault();
             Rin.Busy = pOccupy;
