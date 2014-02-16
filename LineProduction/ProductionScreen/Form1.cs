@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TransportRobots;
+using TransportRobots.Entities;
 
 namespace ProductionScreen
     {
@@ -38,14 +39,14 @@ namespace ProductionScreen
               worker2.DoWork += (o, ea) =>
               {
                   //4,5,2,8,40,3
-                  WareHouse WH = new WareHouse(Convert.ToInt32(lblRobots.Text)
+                  Dispatcher WH = new Dispatcher(Convert.ToInt32(lblRobots.Text)
                                                 ,Convert.ToInt32(lblStations.Text)
                                                 , Convert.ToInt32(txtNBR.Text), Convert.ToInt32(txtNBS.Text), Convert.ToInt32(lblStock.Text)
                                                 , Convert.ToInt32(txtNAP.Text));
 
 
-                  WH.WhareHouseStatusActivity += new WareHouse.delWareHouse(MostrarInformacion);
-                  WH.WhareHouseNotificaciones += new WareHouse.delWareHouseNotificaciones(UpdateNotificaciones);
+                  WH.WhareHouseStatusActivity += new Dispatcher.delWareHouse(MostrarInformacion);
+                  WH.WhareHouseNotifyMonitors += new Dispatcher.delWareHouseNotificaciones(UpdateNotificaciones);
 
                   ErrorProduccion ER = WH.Start();
  

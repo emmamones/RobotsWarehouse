@@ -40,11 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorProduccion.cs" />
-    <Compile Include="Robot.cs" />
-    <Compile Include="Station.cs" />
-    <Compile Include="WareHouse.cs" />
+    <Compile Include="Entities\ASubjectStation.cs" />
+    <Compile Include="Entities\ASubjectServus.cs" />
+    <Compile Include="Entities\DeliverStation.cs" />
+    <Compile Include="Entities\Orders.cs" />
+    <Compile Include="Enum\EAccion.cs" />
+    <Compile Include="Entities\ErrorProduccion.cs" />
+    <Compile Include="Entities\Servus.cs" />
+    <Compile Include="Entities\ContainerStation.cs" />
+    <Compile Include="Interfaces\IContainerStation.cs" />
+    <Compile Include="Interfaces\IObserverServus.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IRobot.cs" />
+    <Compile Include="Dispatcher.cs" />
+    <Compile Include="Interfaces\IObserverStation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,7 +31,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnPause = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ListBoxNotificaciones = new System.Windows.Forms.ListBox();
@@ -49,7 +49,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(48, 99);
+            this.btnStart.Location = new System.Drawing.Point(22, 12);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(185, 84);
             this.btnStart.TabIndex = 0;
@@ -76,14 +76,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Avalible Stations:";
             // 
-            // btnPause
+            // btnOrder
             // 
-            this.btnPause.Location = new System.Drawing.Point(48, 200);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(185, 84);
-            this.btnPause.TabIndex = 4;
-            this.btnPause.Text = "Pause";
-            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnOrder.Location = new System.Drawing.Point(22, 115);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(185, 84);
+            this.btnOrder.TabIndex = 4;
+            this.btnOrder.Text = "Add Order";
+            this.btnOrder.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -219,7 +219,7 @@
             this.Controls.Add(this.ListBoxNotificaciones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnPause);
+            this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
@@ -235,7 +235,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox ListBoxNotificaciones;

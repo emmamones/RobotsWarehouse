@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TransportRobots
+namespace TransportRobots.Entities
     {
     public class ErrorProduccion
         {
