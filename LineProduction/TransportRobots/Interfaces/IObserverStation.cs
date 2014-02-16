@@ -7,6 +7,6 @@ namespace TransportRobots.Interfaces
     {
   public  interface IObserverStation
         {
-      void NotificarStacionAvalible(int idStation, bool pOccupy, int idRobot, int MaxNBoxes);
+      void NotifyStacionActivity(int idStation, bool pOccupy, int idRobot, int MaxNBoxes);
         }
     }

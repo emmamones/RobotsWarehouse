@@ -13,7 +13,7 @@ namespace TransportRobots.Entities
         public int idRobot { get; set; }
         public int CantidadDescarga { get; set; }
         public int NBoxes { get; set; }
-        public int NSiguientePosicion { get; set; }
+        public int NextStation { get; set; }
         public bool Busy { get; set; }
         public EAccion Activity { get; set; }
         public List<ASubjectStation> ListStations { get; set; }
@@ -35,7 +35,7 @@ namespace TransportRobots.Entities
             Busy = false;
             CantidadDescarga = 1;
             NBoxes = pNBoxes;
-            NSiguientePosicion = 0;
+            NextStation = 0;
             idRobot = pidRobot;
             ListStations = new List<ASubjectStation>();
             }

@@ -78,7 +78,7 @@ namespace TransportRobots
                                 ContainerStation tempStation = new ContainerStation(iStation.idStation, iStation.MaxNBoxes);
                                 tempStation.AttachCentral(this);
 
-                                tempRob.NSiguientePosicion = tempStation.idStation;
+                                tempRob.NextStation = tempStation.idStation;
                                 Thread T = new Thread(() => tempRob.SendRobot(tempStation));
                                 T.Start();
                                 //T.Join(); //Uncomment it in order to Test the Main Thread waiting for the rest.
@@ -236,7 +236,7 @@ namespace TransportRobots
         ///  Fires the Event to Notify the Monitor.
         /// </summary>
         /// <param name="pOccupy"></param>
-        public void NotificarStacionAvalible(int idStation, bool pOccupy, int idRobot, int MaxNBoxes)
+        public void NotifyStacionActivity(int idStation, bool pOccupy, int idRobot, int MaxNBoxes)
             {
             ContainerStation Sin = LStations.Where(x => x.idStation == idStation).FirstOrDefault();
             Sin.Occupy = pOccupy;

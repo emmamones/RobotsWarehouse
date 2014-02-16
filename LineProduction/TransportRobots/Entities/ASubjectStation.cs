@@ -18,11 +18,11 @@ namespace TransportRobots.Entities
         public void AttachCentral(IObserverStation product)
             { 
             //attach the Dispacher(Observer) to Station(subject) Observing the Changes of Activity Creating the New Event by a Delegate Function.
-            OnStatusUpdate += new StatusUpdate(product.NotificarStacionAvalible);
+            OnStatusUpdate += new StatusUpdate(product.NotifyStacionActivity);
             }
         public void DetachCentral(IObserverStation product)
-            { 
-            OnStatusUpdate -= new StatusUpdate(product.NotificarStacionAvalible);
+            {
+            OnStatusUpdate -= new StatusUpdate(product.NotifyStacionActivity);
             }
         public abstract void StationActivity(int idRobot, bool busy);
         public abstract void ProccesTask();
