@@ -14,11 +14,11 @@ namespace TransportRobots.Entities
         public void AttachCentral(IObserverServus product)
             { 
             //attach the Dispacher(Observer) to Robot(subject) Observing the Changes of Activity Creating the New Event by a Delegate Function.
-            OnStatusUpdate += new StatusUpdate(product.NotificarRobotvalible);
+            OnStatusUpdate += new StatusUpdate(product.NotifyRobotActivity);
             }
         public void DetachCentral(IObserverServus product)
             {
-            OnStatusUpdate -= new StatusUpdate(product.NotificarRobotvalible);
+            OnStatusUpdate -= new StatusUpdate(product.NotifyRobotActivity);
             }
 
         public void Notify(int idRobot, bool pOccupy, int NBoxes)
