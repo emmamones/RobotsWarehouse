@@ -7,6 +7,6 @@ namespace TransportRobots.Interfaces
     {
   public  interface IObserverServus
         {
-      void NotificarRobotvalible(int idRobot, bool pOccupy,int NBoxes);
+      void NotifyRobotActivity(int idRobot, bool pOccupy,int NBoxes);
         }
     }
